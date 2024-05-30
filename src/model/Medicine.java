@@ -1,21 +1,21 @@
 package model;
 
-public class Furniture extends Item{
+public class Medicine extends Item{
 
     private int price;
     private int qty;
+    private String expiredDate;
     private String company;
-    private String countryImport;
 
-    public Furniture() {
+    public  Medicine(){
     }
 
-    public Furniture(String name, int price, int qty, String company, String countryImport) {
+    public Medicine(String name, int price, int qty, String expiredDate, String company) {
         super(name);
         this.price = price;
         this.qty = qty;
+        this.expiredDate = expiredDate;
         this.company = company;
-        this.countryImport = countryImport;
     }
 
     public int getPrice() {
@@ -34,20 +34,20 @@ public class Furniture extends Item{
         this.qty = qty;
     }
 
+    public String getExpiredDate() {
+        return expiredDate;
+    }
+
+    public void setExpiredDate(String expiredDate) {
+        this.expiredDate = expiredDate;
+    }
+
     public String getCompany() {
         return company;
     }
 
     public void setCompany(String company) {
         this.company = company;
-    }
-
-    public String getCountryImport() {
-        return countryImport;
-    }
-
-    public void setCountryImport(String countryImport) {
-        this.countryImport = countryImport;
     }
 
     public void print() {
@@ -57,6 +57,6 @@ public class Furniture extends Item{
         System.out.println("Price : "+ this.price+"$");
         System.out.println("Qty : "+ this.qty);
         System.out.println("Company : "+ this.company);
-        System.out.println("Country Import : "+ this.countryImport);
+        System.out.println("Expired Date : "+ this.expiredDate);
     }
 }
