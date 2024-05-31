@@ -8,21 +8,21 @@ public class BoxService {
     public BoxService(){
     }
 
-    public Box insert(String name, double weight, String type, String address) {
+    public Box insert(Box box) {
         Box item;
-        item = new Box(name, weight, type, address);
+        item = new Box(box.getName(), box.getWeight(), box.getType(), box.getAddress());
         return item;
     }
 
-    public void update(String id, String name, double weight, String type, String address){
+    public void update(Box box){
 
         for (Item ob : itemArray) {
-            if(ob.getID().equalsIgnoreCase(id)){
+            if(ob.getID().equalsIgnoreCase(box.getID())){
                 Box obj = (Box) ob;
-                obj.setName(name);
-                obj.setWeight(weight);
-                obj.setType(type);
-                obj.setAddress(address);
+                obj.setName(box.getName());
+                obj.setWeight(box.getWeight());
+                obj.setType(box.getType());
+                obj.setAddress(box.getAddress());
                 break;
             }
         }

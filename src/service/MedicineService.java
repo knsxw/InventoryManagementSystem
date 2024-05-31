@@ -3,64 +3,28 @@ package service;
 import model.Item;
 import model.Medicine;
 
-import java.util.Scanner;
-
 import static main.Main.itemArray;
 
 public class MedicineService {
-    Scanner scanner;
-    public MedicineService(Scanner scanner){
-        this.scanner = scanner;
+
+    public MedicineService(){
     }
 
-    public Medicine insert(){
-        System.out.print("Enter the name of the medicine: ");
-        String name = scanner.next();
-
-        System.out.print("Enter the price of the medicine: ");
-        int price = scanner.nextInt();
-
-        System.out.print("Enter the quantity of the medicine: ");
-        int qty = scanner.nextInt();
-
-        System.out.print("Enter the expired date of the medicine: ");
-        String expiredDate = scanner.next();
-
-        System.out.print("Enter the company of medicine: ");
-        String company = scanner.next();
-
+    public Medicine insert(Medicine medicine){
         Medicine item;
-        item = new Medicine(name, price, qty, expiredDate, company);
+        item = new Medicine(medicine.getName(), medicine.getPrice(), medicine.getQty(), medicine.getExpiredDate(), medicine.getCompany());
         return item;
     }
 
-    public void update(){
-        System.out.print("Enter ID to update: ");
-        String id = scanner.next();
-
-        System.out.print("Enter the name of the medicine: ");
-        String name = scanner.next();
-
-        System.out.print("Enter the price of the medicine: ");
-        int price = scanner.nextInt();
-
-        System.out.print("Enter the quantity of the medicine: ");
-        int qty = scanner.nextInt();
-
-        System.out.print("Enter the expired date of the medicine: ");
-        String expiredDate = scanner.next();
-
-        System.out.print("Enter the company of medicine: ");
-        String company = scanner.next();
-
+    public void update(Medicine medicine){
         for (Item ob : itemArray) {
-            if(ob.getID().equalsIgnoreCase(id)){
+            if(ob.getID().equalsIgnoreCase(medicine.getID())){
                 Medicine obj = (Medicine) ob;
-                obj.setName(name);
-                obj.setPrice(price);
-                obj.setQty(qty);
-                obj.setExpiredDate(expiredDate);
-                obj.setCompany(company);
+                obj.setName(medicine.getName());
+                obj.setPrice(medicine.getPrice());
+                obj.setQty(medicine.getQty());
+                obj.setExpiredDate(medicine.getExpiredDate());
+                obj.setCompany(medicine.getCompany());
                 break;
             }
         }

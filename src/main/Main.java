@@ -1,6 +1,8 @@
 package main;
 
 import dataprepare.BoxDataPrepare;
+import dataprepare.FurnitureDataPrepare;
+import dataprepare.MedicineDataPrepare;
 import model.Box;
 import model.Furniture;
 import model.Item;
@@ -22,10 +24,12 @@ public class Main {
     static boolean isContinue = true;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        BoxService pService = new BoxService();
+        BoxService boxService = new BoxService();
         BoxDataPrepare boxDataPrepare = new BoxDataPrepare(scanner);
-        FurnitureService fService = new FurnitureService(scanner);
-        MedicineService mService = new MedicineService(scanner);
+        FurnitureService furnitureService = new FurnitureService();
+        FurnitureDataPrepare furnitureDataPrepare = new FurnitureDataPrepare(scanner);
+        MedicineService medicineService = new MedicineService();
+        MedicineDataPrepare medicineDataPrepare = new MedicineDataPrepare(scanner);
 
         while(isContinue) {
 
@@ -39,9 +43,8 @@ public class Main {
                 case 1 -> {
                     switch(num) {
                         case 1 -> {
-                            boxDataPrepare.insert();
-                            Box item = pService.insert(boxDataPrepare.getName(), boxDataPrepare.getWeight(), boxDataPrepare.getType(), boxDataPrepare.getAddress());
-                            itemArray.add(item);
+                            Box item = boxDataPrepare.insert();
+                            itemArray.add(boxService.insert(item));
                         }
                         case 2 -> {
                             boxDataPrepare.delete();
@@ -49,48 +52,42 @@ public class Main {
                             delete(ID);
                         }
                         case 3 -> {
-                            boxDataPrepare.update();
-                            pService.update(boxDataPrepare.getID(), boxDataPrepare.getName(), boxDataPrepare.getWeight(), boxDataPrepare.getType(), boxDataPrepare.getAddress());
+                            Box item = boxDataPrepare.update();
+                            boxService.update(item);
                         }
                     }
                 }
                 case 2 -> {
                     switch(num) {
                         case 1 -> {
-
-                            Furniture item = fService.insert();
-                            itemArray.add(item);
-
+                            Furniture item = furnitureDataPrepare.insert();
+                            itemArray.add(furnitureService.insert(item));
                         }
                         case 2 -> {
-
                             System.out.print("Enter ID to delete: ");
                             String ID = scanner.next();
                             delete(ID);
-
                         }
                         case 3 -> {
-                            fService.update();
+                            Furniture item = furnitureDataPrepare.update();
+                            furnitureService.update(item);
                         }
                     }
                 }
                 case 3 -> {
                     switch(num) {
                         case 1 -> {
-
-                            Medicine item = mService.insert();
-                            itemArray.add(item);
-
+                            Medicine item = medicineDataPrepare.insert();
+                            itemArray.add(medicineService.insert(item));
                         }
                         case 2 -> {
-
                             System.out.print("Enter ID to delete: ");
                             String ID = scanner.next();
                             delete(ID);
-
                         }
                         case 3 -> {
-                            mService.update();
+                            Medicine item = medicineDataPrepare.update();
+                            medicineService.update(item);
                         }
                     }
                 }
@@ -105,10 +102,11 @@ public class Main {
                 isContinue = false;
                 scanner.close();
                 print();
-            } else if (yesNo.equalsIgnoreCase("Y")) {
             } else {
-                System.out.println("Wrong Input");
-                break;
+                if (!yesNo.equalsIgnoreCase("Y")) {
+                    System.out.println("Wrong Input");
+                    break;
+                }
             }
 
         }
