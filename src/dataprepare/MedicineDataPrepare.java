@@ -1,8 +1,7 @@
 package dataprepare;
 
-import model.Furniture;
 import model.Medicine;
-
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MedicineDataPrepare extends DataPrepare{
@@ -21,8 +20,9 @@ public class MedicineDataPrepare extends DataPrepare{
         System.out.print("Enter the quantity of the medicine: ");
         medicine.setQty(scanner.nextInt());
 
-        System.out.print("Enter the expired date of the medicine: ");
-        medicine.setExpiredDate(scanner.next());
+        System.out.print("Enter the expired date of the medicine(yyyy-mm-dd): ");
+        String date = scanner.next();
+        medicine.setExpiredDate(LocalDate.parse(date));
 
         System.out.print("Enter the company of medicine: ");
         medicine.setCompany(scanner.next());
@@ -44,8 +44,9 @@ public class MedicineDataPrepare extends DataPrepare{
         System.out.print("Enter the quantity of the medicine: ");
         medicine.setQty(scanner.nextInt());
 
-        System.out.print("Enter the expired date of the medicine: ");
-        medicine.setExpiredDate(scanner.next());
+        System.out.print("Enter the expired date of the medicine(yyyy-mm-dd): ");
+        String date = scanner.next();
+        medicine.setExpiredDate(LocalDate.parse(date));
 
         System.out.print("Enter the company of medicine: ");
         medicine.setCompany(scanner.next());

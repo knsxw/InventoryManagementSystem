@@ -1,16 +1,18 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Medicine extends Item{
 
     private int price;
     private int qty;
-    private String expiredDate;
+    private LocalDate expiredDate;
     private String company;
 
     public  Medicine(){
     }
 
-    public Medicine(String name, int price, int qty, String expiredDate, String company) {
+    public Medicine(String name, int price, int qty, LocalDate expiredDate, String company) {
         super(name);
         this.price = price;
         this.qty = qty;
@@ -34,11 +36,11 @@ public class Medicine extends Item{
         this.qty = qty;
     }
 
-    public String getExpiredDate() {
+    public LocalDate getExpiredDate() {
         return expiredDate;
     }
 
-    public void setExpiredDate(String expiredDate) {
+    public void setExpiredDate(LocalDate expiredDate) {
         this.expiredDate = expiredDate;
     }
 
