@@ -10,14 +10,6 @@ public class Furniture extends Item{
     public Furniture() {
     }
 
-    public Furniture(String name, int price, int qty, String company, String countryImport) {
-        super(name);
-        this.price = price;
-        this.qty = qty;
-        this.company = company;
-        this.countryImport = countryImport;
-    }
-
     public int getPrice() {
         return price;
     }

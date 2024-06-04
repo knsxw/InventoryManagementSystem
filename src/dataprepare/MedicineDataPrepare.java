@@ -2,15 +2,17 @@ package dataprepare;
 
 import model.Medicine;
 import java.time.LocalDate;
-import java.util.Scanner;
 
-public class MedicineDataPrepare extends DataPrepare{
-    public MedicineDataPrepare(Scanner scanner) {
-        super(scanner);
-    }
+import static util.DataUtil.generateID;
+import static util.DataUtil.scanner;
+
+public class MedicineDataPrepare {
+    public MedicineDataPrepare() {}
 
     public Medicine insert(){
         Medicine medicine = new Medicine();
+        medicine.setID(generateID());
+
         System.out.print("Enter the name of the medicine: ");
         medicine.setName(scanner.next());
 
@@ -52,5 +54,10 @@ public class MedicineDataPrepare extends DataPrepare{
         medicine.setCompany(scanner.next());
 
         return medicine;
+    }
+
+    public String delete() {
+        System.out.print("Enter ID to update: ");
+        return scanner.next();
     }
 }

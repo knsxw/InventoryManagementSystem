@@ -3,16 +3,16 @@ package service;
 import model.Furniture;
 import model.Item;
 
+import java.util.Iterator;
+
 import static main.Main.itemArray;
 
 public class FurnitureService {
     public FurnitureService(){
     }
 
-    public Furniture insert(Furniture furniture){
-        Furniture item;
-        item = new Furniture(furniture.getName(), furniture.getPrice(), furniture.getQty(), furniture.getCompany(), furniture.getCountryImport());
-        return item;
+    public void insert(Furniture furniture){
+        itemArray.add(furniture);
     }
 
     public void update(Furniture furniture){
@@ -25,6 +25,17 @@ public class FurnitureService {
                 obj.setQty(furniture.getQty());
                 obj.setCompany(furniture.getCompany());
                 obj.setCountryImport(furniture.getCountryImport());
+                break;
+            }
+        }
+    }
+
+    public void delete(String id) {
+        Iterator<Item> iterator = itemArray.iterator();
+        while (iterator.hasNext()) {
+            Item obj = iterator.next();
+            if (obj.getID().equalsIgnoreCase(id)) {
+                iterator.remove();
                 break;
             }
         }

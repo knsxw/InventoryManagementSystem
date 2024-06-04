@@ -2,14 +2,17 @@ package dataprepare;
 
 import model.Box;
 
-import java.util.Scanner;
+import static util.DataUtil.generateID;
+import static util.DataUtil.scanner;
 
-public class BoxDataPrepare extends DataPrepare{
-    public BoxDataPrepare(Scanner scanner) {
-        super(scanner);
-    }
+public class BoxDataPrepare {
+
+    public BoxDataPrepare() {}
+
     public Box insert(){
         Box box = new Box();
+        box.setID(generateID());
+
         System.out.print("Enter the name of the item: ");
         box.setName(scanner.next());
 
@@ -44,5 +47,10 @@ public class BoxDataPrepare extends DataPrepare{
         box.setAddress(scanner.next());
 
         return box;
+    }
+
+    public String delete() {
+        System.out.print("Enter ID to update: ");
+        return scanner.next();
     }
 }

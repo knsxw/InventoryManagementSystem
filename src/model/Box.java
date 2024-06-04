@@ -9,13 +9,6 @@ public class Box extends Item {
     public Box(){
     }
 
-    public Box(String name, double weight, String type, String address) {
-        super(name);
-        this.weight = weight;
-        this.type = type;
-        this.address = address;
-    }
-
     public double getWeight() {
         return weight;
     }

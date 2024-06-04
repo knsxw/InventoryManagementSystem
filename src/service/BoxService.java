@@ -2,16 +2,17 @@ package service;
 
 import model.Box;
 import model.Item;
+
+import java.util.Iterator;
+
 import static main.Main.itemArray;
 
 public class BoxService {
     public BoxService(){
     }
 
-    public Box insert(Box box) {
-        Box item;
-        item = new Box(box.getName(), box.getWeight(), box.getType(), box.getAddress());
-        return item;
+    public void insert(Box box) {
+        itemArray.add(box);
     }
 
     public void update(Box box){
@@ -23,6 +24,17 @@ public class BoxService {
                 obj.setWeight(box.getWeight());
                 obj.setType(box.getType());
                 obj.setAddress(box.getAddress());
+                break;
+            }
+        }
+    }
+
+    public void delete(String id) {
+        Iterator<Item> iterator = itemArray.iterator();
+        while (iterator.hasNext()) {
+            Item obj = iterator.next();
+            if (obj.getID().equalsIgnoreCase(id)) {
+                iterator.remove();
                 break;
             }
         }

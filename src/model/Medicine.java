@@ -12,14 +12,6 @@ public class Medicine extends Item{
     public  Medicine(){
     }
 
-    public Medicine(String name, int price, int qty, LocalDate expiredDate, String company) {
-        super(name);
-        this.price = price;
-        this.qty = qty;
-        this.expiredDate = expiredDate;
-        this.company = company;
-    }
-
     public int getPrice() {
         return price;
     }

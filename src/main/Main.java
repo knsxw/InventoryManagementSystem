@@ -10,11 +10,9 @@ import model.Medicine;
 import service.BoxService;
 import service.FurnitureService;
 import service.MedicineService;
-
+import static util.DataUtil.scanner;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -23,13 +21,13 @@ public class Main {
     public static List<Item> itemArray = new ArrayList<>();
     static boolean isContinue = true;
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
         BoxService boxService = new BoxService();
-        BoxDataPrepare boxDataPrepare = new BoxDataPrepare(scanner);
+        BoxDataPrepare boxDataPrepare = new BoxDataPrepare();
         FurnitureService furnitureService = new FurnitureService();
-        FurnitureDataPrepare furnitureDataPrepare = new FurnitureDataPrepare(scanner);
+        FurnitureDataPrepare furnitureDataPrepare = new FurnitureDataPrepare();
         MedicineService medicineService = new MedicineService();
-        MedicineDataPrepare medicineDataPrepare = new MedicineDataPrepare(scanner);
+        MedicineDataPrepare medicineDataPrepare = new MedicineDataPrepare();
 
         while(isContinue) {
 
@@ -42,53 +40,23 @@ public class Main {
             switch(PFM) {
                 case 1 -> {
                     switch(num) {
-                        case 1 -> {
-                            Box item = boxDataPrepare.insert();
-                            itemArray.add(boxService.insert(item));
-                        }
-                        case 2 -> {
-                            boxDataPrepare.delete();
-                            String ID = boxDataPrepare.getID();
-                            delete(ID);
-                        }
-                        case 3 -> {
-                            Box item = boxDataPrepare.update();
-                            boxService.update(item);
-                        }
+                        case 1 -> boxService.insert(boxDataPrepare.insert());
+                        case 2 -> boxService.delete(boxDataPrepare.delete());
+                        case 3 -> boxService.update(boxDataPrepare.update());
                     }
                 }
                 case 2 -> {
                     switch(num) {
-                        case 1 -> {
-                            Furniture item = furnitureDataPrepare.insert();
-                            itemArray.add(furnitureService.insert(item));
-                        }
-                        case 2 -> {
-                            System.out.print("Enter ID to delete: ");
-                            String ID = scanner.next();
-                            delete(ID);
-                        }
-                        case 3 -> {
-                            Furniture item = furnitureDataPrepare.update();
-                            furnitureService.update(item);
-                        }
+                        case 1 -> furnitureService.insert(furnitureDataPrepare.insert());
+                        case 2 -> furnitureService.delete(furnitureDataPrepare.delete());
+                        case 3 -> furnitureService.update(furnitureDataPrepare.update());
                     }
                 }
                 case 3 -> {
                     switch(num) {
-                        case 1 -> {
-                            Medicine item = medicineDataPrepare.insert();
-                            itemArray.add(medicineService.insert(item));
-                        }
-                        case 2 -> {
-                            System.out.print("Enter ID to delete: ");
-                            String ID = scanner.next();
-                            delete(ID);
-                        }
-                        case 3 -> {
-                            Medicine item = medicineDataPrepare.update();
-                            medicineService.update(item);
-                        }
+                        case 1 -> medicineService.insert(medicineDataPrepare.insert());
+                        case 2 -> medicineService.delete(medicineDataPrepare.delete());
+                        case 3 -> medicineService.update(medicineDataPrepare.update());
                     }
                 }
             }
@@ -109,17 +77,6 @@ public class Main {
                 }
             }
 
-        }
-    }
-
-    public static void delete(String id) {
-        Iterator<Item> iterator = itemArray.iterator();
-        while (iterator.hasNext()) {
-            Item obj = iterator.next();
-            if (obj.getID().equalsIgnoreCase(id)) {
-                iterator.remove();
-                break;
-            }
         }
     }
 

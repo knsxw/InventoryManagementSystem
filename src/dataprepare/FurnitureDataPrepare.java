@@ -2,14 +2,17 @@ package dataprepare;
 
 import model.Furniture;
 
-import java.util.Scanner;
+import static util.DataUtil.generateID;
+import static util.DataUtil.scanner;
 
-public class FurnitureDataPrepare extends DataPrepare{
-    public FurnitureDataPrepare(Scanner scanner){
-        super(scanner);
-    }
+public class FurnitureDataPrepare {
+
+    public FurnitureDataPrepare(){}
+
     public Furniture insert() {
         Furniture furniture = new Furniture();
+        furniture.setID(generateID());
+
         System.out.print("Enter the name of the item: ");
         furniture.setName(scanner.next());
 
@@ -48,5 +51,10 @@ public class FurnitureDataPrepare extends DataPrepare{
         System.out.print("Enter the country import of item: ");
         furniture.setCountryImport(scanner.next());
         return furniture;
+    }
+
+    public String delete() {
+        System.out.print("Enter ID to update: ");
+        return scanner.next();
     }
 }
