@@ -33,6 +33,11 @@ public class Box extends Item {
         this.address = address;
     }
 
+    public String toString(){
+        print();
+        return super.toString();
+    }
+
     public void print() {
         System.out.println("-".repeat(20));
         System.out.println("ID : "+ this.getID());

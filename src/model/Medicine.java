@@ -11,7 +11,6 @@ public class Medicine extends Item{
 
     public  Medicine(){
     }
-
     public int getPrice() {
         return price;
     }
