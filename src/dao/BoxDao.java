@@ -2,8 +2,10 @@ package dao;
 
 import model.Box;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import static util.DatabaseUtil.getConnection;
 
@@ -18,5 +20,24 @@ public class BoxDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ArrayList<Box> getAllBoxes() {
+        ArrayList<Box> boxes = new ArrayList<>();
+        try (Statement statement = getConnection().createStatement()){
+            ResultSet res = statement.executeQuery("SELECT * FROM Box");
+            while (res.next()) {
+                Box box = new Box();
+                box.setID(res.getString("ID"));
+                box.setName(res.getString("name"));
+                box.setWeight(res.getDouble("weight"));
+                box.setType(res.getString("type"));
+                box.setAddress(res.getString("address"));
+                boxes.add(box);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return boxes;
     }
 }

@@ -33,17 +33,4 @@ public class Box extends Item {
         this.address = address;
     }
 
-    public String toString(){
-        print();
-        return super.toString();
-    }
-
-    public void print() {
-        System.out.println("-".repeat(20));
-        System.out.println("ID : "+ this.getID());
-        System.out.println("Name : "+ this.getName());
-        System.out.println("Weight : "+ this.weight+"kg");
-        System.out.println("Type : "+ this.type);
-        System.out.println("Address : "+ this.address);
-    }
 }
