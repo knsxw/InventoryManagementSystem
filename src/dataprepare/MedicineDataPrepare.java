@@ -1,5 +1,6 @@
 package dataprepare;
 
+import dao.MedicineDao;
 import model.Medicine;
 import java.time.LocalDate;
 
@@ -7,6 +8,7 @@ import static util.DataUtil.generateID;
 import static util.DataUtil.scanner;
 
 public class MedicineDataPrepare {
+    private final MedicineDao medicineDao = new MedicineDao();
     public MedicineDataPrepare() {}
 
     public Medicine insert(){
@@ -57,7 +59,19 @@ public class MedicineDataPrepare {
     }
 
     public String delete() {
-        System.out.print("Enter ID to update: ");
+        System.out.print("Enter ID to delete: ");
         return scanner.next();
+    }
+
+    public void showAll() {
+        System.out.printf("%1s %10s %1s %15s %1s %15s %1s %15s %1s %15s %1s %15s %1s%n",
+                "|", "ID", "|", "Name", "|", "Price", "|", "Qty", "|", "ExpiredDate", "|","Company", "|");
+        medicineDao.getAllMedicine().forEach((Medicine medicine)-> {
+            System.out.println("-".repeat(104));
+            System.out.printf("%1s %10s %1s %15s %1s %15s %1s %15s %1s %15s %1s %15s %1s%n",
+                    "|", medicine.getID(), "|", medicine.getName(), "|", medicine.getPrice(), "|", medicine.getPrice(), "|", medicine.getExpiredDate(), "|",
+                    medicine.getCompany(),"|");
+        });
+        System.out.println("-".repeat(104));
     }
 }

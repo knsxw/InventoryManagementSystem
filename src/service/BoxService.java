@@ -18,28 +18,11 @@ public class BoxService {
     }
 
     public void update(Box box){
-
-        for (Item ob : itemArray) {
-            if(ob.getID().equalsIgnoreCase(box.getID())){
-                Box obj = (Box) ob;
-                obj.setName(box.getName());
-                obj.setWeight(box.getWeight());
-                obj.setType(box.getType());
-                obj.setAddress(box.getAddress());
-                break;
-            }
-        }
+        boxDao.update(box);
     }
 
     public void delete(String id) {
-        Iterator<Item> iterator = itemArray.iterator();
-        while (iterator.hasNext()) {
-            Item obj = iterator.next();
-            if (obj.getID().equalsIgnoreCase(id)) {
-                iterator.remove();
-                break;
-            }
-        }
+        boxDao.delete(id);
     }
 
 

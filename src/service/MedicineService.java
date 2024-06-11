@@ -1,5 +1,6 @@
 package service;
 
+import dao.MedicineDao;
 import model.Item;
 import model.Medicine;
 
@@ -8,26 +9,16 @@ import java.util.Iterator;
 import static main.Main.itemArray;
 
 public class MedicineService {
-
+    private final MedicineDao medicineDao = new MedicineDao();
     public MedicineService(){
     }
 
     public void insert(Medicine medicine){
-        itemArray.add(medicine);
+        medicineDao.insert(medicine);
     }
 
     public void update(Medicine medicine){
-        for (Item ob : itemArray) {
-            if(ob.getID().equalsIgnoreCase(medicine.getID())){
-                Medicine obj = (Medicine) ob;
-                obj.setName(medicine.getName());
-                obj.setPrice(medicine.getPrice());
-                obj.setQty(medicine.getQty());
-                obj.setExpiredDate(medicine.getExpiredDate());
-                obj.setCompany(medicine.getCompany());
-                break;
-            }
-        }
+        medicineDao.update(medicine);
     }
 
     public void delete(String id) {

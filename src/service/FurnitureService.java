@@ -1,5 +1,6 @@
 package service;
 
+import dao.FurnitureDao;
 import model.Furniture;
 import model.Item;
 
@@ -8,26 +9,16 @@ import java.util.Iterator;
 import static main.Main.itemArray;
 
 public class FurnitureService {
+    private final FurnitureDao furnitureDao = new FurnitureDao();
     public FurnitureService(){
     }
 
     public void insert(Furniture furniture){
-        itemArray.add(furniture);
+        furnitureDao.insert(furniture);
     }
 
     public void update(Furniture furniture){
-
-        for (Item ob : itemArray) {
-            if(ob.getID().equalsIgnoreCase(furniture.getID())){
-                Furniture obj = (Furniture) ob;
-                obj.setName(furniture.getName());
-                obj.setPrice(furniture.getPrice());
-                obj.setQty(furniture.getQty());
-                obj.setCompany(furniture.getCompany());
-                obj.setCountryImport(furniture.getCountryImport());
-                break;
-            }
-        }
+        furnitureDao.update(furniture);
     }
 
     public void delete(String id) {

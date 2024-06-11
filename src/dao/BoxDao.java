@@ -40,4 +40,26 @@ public class BoxDao {
         }
         return boxes;
     }
+
+    public void delete(String id) {
+        try(Statement statement = getConnection().createStatement()) {
+            String sql = "DELETE FROM Box WHERE Box.ID = \""+id+"\";";
+            System.out.println(sql);
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void update(Box box) {
+        try(Statement statement = getConnection().createStatement()) {
+            String sql = "UPDATE Box " +
+                    "SET name = \""+box.getName()+"\", weight = "+box.getWeight()+", type = \""+box.getType()
+                    +"\", address = \"" +box.getAddress()+"\" WHERE ID = \""+box.getID()+"\";";
+            System.out.println(sql);
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

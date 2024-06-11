@@ -1,12 +1,13 @@
 package dataprepare;
 
+import dao.FurnitureDao;
 import model.Furniture;
 
 import static util.DataUtil.generateID;
 import static util.DataUtil.scanner;
 
 public class FurnitureDataPrepare {
-
+    private final FurnitureDao furnitureDao = new FurnitureDao();
     public FurnitureDataPrepare(){}
 
     public Furniture insert() {
@@ -54,7 +55,19 @@ public class FurnitureDataPrepare {
     }
 
     public String delete() {
-        System.out.print("Enter ID to update: ");
+        System.out.print("Enter ID to delete: ");
         return scanner.next();
+    }
+
+    public void showAll() {
+        System.out.printf("%1s %10s %1s %15s %1s %15s %1s %15s %1s %15s %1s %15s %1s%n",
+                "|", "ID", "|", "Name", "|", "Price", "|", "Qty", "|", "Company", "|","CountryImport", "|");
+        furnitureDao.getAllFurniture().forEach((Furniture furniture)-> {
+            System.out.println("-".repeat(104));
+            System.out.printf("%1s %10s %1s %15s %1s %15s %1s %15s %1s %15s %1s %15s %1s%n",
+                    "|", furniture.getID(), "|", furniture.getName(), "|", furniture.getPrice(), "|", furniture.getPrice(), "|", furniture.getCompany(), "|",
+                    furniture.getCountryImport(),"|");
+        });
+        System.out.println("-".repeat(104));
     }
 }

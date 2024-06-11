@@ -13,6 +13,7 @@ public class FurnitureController {
             case 1 -> furnitureService.insert(furnitureDataPrepare.insert());
             case 2 -> furnitureService.delete(furnitureDataPrepare.delete());
             case 3 -> furnitureService.update(furnitureDataPrepare.update());
+            case 4 -> furnitureDataPrepare.showAll();
         }
     }
 }

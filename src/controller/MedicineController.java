@@ -13,6 +13,7 @@ public class MedicineController {
             case 1 -> medicineService.insert(medicineDataPrepare.insert());
             case 2 -> medicineService.delete(medicineDataPrepare.delete());
             case 3 -> medicineService.update(medicineDataPrepare.update());
+            case 4 -> medicineDataPrepare.showAll();
         }
     }
 }

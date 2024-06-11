@@ -43,13 +43,4 @@ public class Medicine extends Item{
         this.company = company;
     }
 
-    public void print() {
-        System.out.println("-".repeat(20));
-        System.out.println("ID : "+ this.getID());
-        System.out.println("Name : "+ this.getName());
-        System.out.println("Price : "+ this.price+"$");
-        System.out.println("Qty : "+ this.qty);
-        System.out.println("Company : "+ this.company);
-        System.out.println("Expired Date : "+ this.expiredDate);
-    }
 }
